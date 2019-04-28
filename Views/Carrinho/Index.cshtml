@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<h3>Cart Page</h3>
+<table cellpadding="2" cellspacing="2" border="1">
+    <tr>
+        <th>Opção</th>
+        <th>Produto</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+        <th>Sub Total</th>
+    </tr>
+    @if (ViewBag.Cart != null)
+    {
+        foreach (var item in ViewBag.Cart)
+        {
+    <tr>
+        <td><a asp-controller="Carrinho" asp-action="Remove" asp-route-id="@item.Produto.Id">Remove</a></td>
+        <td>@item.Produto.Nome</td>
+        <td>@item.Produto.Preco</td>
+        <td>
+            <form asp-action="RefreshItem">
+                <input name="id" value="@item.Produto.Id" type="hidden" />
+                <input name="quantidadeItem" type="number" max="99" min="1" onkeydown="return false" value="@item.Quantidade"/> 
+                <input type="image" src="~/refresh.png" style="max-height: 24px; max-width: 24px"/>
+            </form>
+        </td>
+        <td>@(item.Produto.Preco * item.Quantidade)</td>
+
+    </tr>
+        }
+    }
+    <tr>
+        <td align="right" colspan="6">Sum</td>
+        <td>
+            @ViewBag.Total
+        </td>
+    </tr>
+</table>
+<br>
+<a asp-controller="Dashboard" asp-action="index">Continuar Comprando</a> | 
+<a asp-controller="Dashboard" asp-action="Buy">Finalizar Compra</a>

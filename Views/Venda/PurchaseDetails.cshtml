@@ -1,0 +1,60 @@
+﻿@model SPSB.Models.Venda
+
+@{
+    ViewData["Title"] = "PurchaseDetails";
+}
+
+<h2>PurchaseDetails</h2>
+
+<div>
+    <h4>Venda</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cartao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cartao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorTotal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValorTotal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCompra)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataCompra)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Itens)
+        </dt>
+        @{
+            foreach (var item in Model.Itens)
+            {
+                <dd> @item.Produto.Nome * @item.Quantidade </dd>
+            }
+        }
+    </dl>
+</div>
+<div>
+    @{
+        if (User.IsInRole("Usuario"))
+        {
+            <a asp-controller="Venda" asp-action="Purchase">Voltar para o menu de compras</a>
+        }
+        else
+        {
+            <a asp-action="Index">Voltar para o menu de compra</a>
+        }
+    }
+
+</div>

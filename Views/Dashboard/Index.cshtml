@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SPSB.Models.Produto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao) 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Preco)
+                </td>
+                <td>
+                    @{
+                        if (item.Quantidade > 0)
+                        {
+                            <a asp-controller="Carrinho" asp-action="Buy" asp-route-id="@item.Id">Adicionar ao carrinho</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Notificacao" asp-action="Create" asp-route-id="@item.Id"> Receber notificação </a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

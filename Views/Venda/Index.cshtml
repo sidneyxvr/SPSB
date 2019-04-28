@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SPSB.Models.Venda>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="col-md-offset-6">
+        <h3>Periodo de consulta</h3>
+        <form asp-action="Index" method="post">
+            <label>Data Inicial</label>
+            <input type="date" name="initialDate" value="@DateTime.Now" />
+            <label>Data Final</label>
+            <input type="date" name="finalDate" value="@DateTime.Now"/>
+            <input type="submit" value="Pesquisar" />
+        </form>
+    </div>
+</div>
+
+<h3>Vendas no periodo [@ViewBag.Periodo] = @ViewBag.Vendas</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cartao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCompra)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cartao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCompra)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

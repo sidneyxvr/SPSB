@@ -1,0 +1,40 @@
+﻿@model List<Tuple<string, string, string>>
+@{
+    ViewData["Title"] = "BestSellers";
+}
+
+<h2>BestSellers</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Produto
+            </th>
+            <th>
+                Quantidade
+            </th>
+            <th>
+                Valor Total
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Item1
+                </td>
+                <td>
+                    @item.Item2
+                </td>
+                <td>
+                    @item.Item3
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

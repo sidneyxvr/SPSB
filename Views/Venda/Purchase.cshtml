@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SPSB.Models.Venda>
+
+@{
+    ViewData["Title"] = "Compra";
+}
+
+<h2>Compra</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cartao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCompra)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cartao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCompra)
+            </td>
+            <td>
+                <a asp-action="PurchaseDetails" asp-route-id="@item.Id">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
